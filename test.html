@@ -97,13 +97,42 @@ button:disabled{opacity:.6;cursor:wait;transform:none}
 @media (max-width:860px){.layout{grid-template-columns:1fr}.letter-scene{height:505px}}
 @media (max-width:560px){main{padding:16px 14px 46px}.hero h1{font-size:46px}.twocol{grid-template-columns:1fr}.person-editor{grid-template-columns:34px 1fr 32px;gap:8px}.person-avatar{width:32px;height:32px;font-size:15px}.guest-card{padding:22px 14px 28px}.letter-scene{height:475px}.stage{height:220px}.envelope{width:220px;height:142px}.reveal-paper{bottom:58px;width:min(96%,360px);padding:18px 16px 16px}.recipient-name{font-size:44px}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms !important;transition-duration:.01ms !important;scroll-behavior:auto !important}}
+
+/* TEST V3: the whole letter clears the envelope; 1.3x visual scale. */
+.letter-scene{--envelope-h:208px;--envelope-w:325px;height:650px;max-width:700px;overflow:visible}
+.stage{height:330px}
+.envelope{width:var(--envelope-w);height:var(--envelope-h)}
+.env-flap{height:164px}
+.env-seal{top:73px;left:calc(50% - 29px);width:58px;height:58px;font-size:26px}
+.stage::before,.stage::after{font-size:32px}
+.reveal-paper{bottom:var(--envelope-h);width:min(96%,546px);padding:29px 31px 26px;transform:translateX(-50%) translateY(190px);opacity:0;transition:transform 1.25s cubic-bezier(.19,.84,.25,1),opacity .3s linear;transition-delay:0s;}
+.reveal-paper .over{font-size:14px}
+.recipient-name{font-size:clamp(45px,7vw,75px)}
+.reveal-paper .wish-title{font-size:17px}
+.reveal-paper .wish-text{font-size:19px}
+.reveal-paper .letter-note{font-size:15px}
+.letter-scene.opening .reveal-paper,.letter-scene.opened .reveal-paper{transform:translateX(-50%) translateY(0);opacity:1;transition-delay:.7s}
+.letter-scene.opened .reveal-paper{transition-delay:0s}
+@media(max-width:560px){
+ .letter-scene{--envelope-h:184px;--envelope-w:286px;max-width:100%;height:590px}
+ .stage{height:300px}
+ .envelope{width:var(--envelope-w);height:var(--envelope-h)}
+ .env-flap{height:148px}
+ .env-seal{top:66px;left:calc(50% - 26px);width:52px;height:52px;font-size:23px}
+ .reveal-paper{bottom:var(--envelope-h);width:min(98%,420px);padding:23px 18px 20px;transform:translateX(-50%) translateY(170px)}
+ .reveal-paper .over{font-size:12px}
+ .recipient-name{font-size:clamp(40px,10vw,56px)}
+ .reveal-paper .wish-title{font-size:15px}
+ .reveal-paper .wish-text{font-size:17px}
+ .reveal-paper .letter-note{font-size:13px}
+}
 </style>
 </head>
 <body>
 <main>
   <header>
     <div class="brand"><span class="brandmark">✦</span><span>Slaptas Kalėdų burtas</span></div>
-    <div class="badge">TEST V2</div>
+    <div class="badge">TEST V3</div>
   </header>
 
   <section id="organizer">
@@ -286,9 +315,17 @@ function renderLinks(){
   state('results', links.length>0);
 }
 
+function resizeLetterScene(){
+  const scene=$('letterScene'); const paper=$('revealPaper');
+  const mobile=window.matchMedia('(max-width:560px)').matches;
+  const envelopeH=mobile?184:208; const minHeight=mobile?590:650;
+  scene.style.height=Math.max(minHeight,paper.scrollHeight+envelopeH+92)+'px';
+}
+
 function fillMeta(data){
   $('recipientName').textContent=data.to;
   $('recipientWish').textContent=(data.wish&&data.wish.trim())?data.wish.trim():'Pageidavimų nenurodyta. Gali sugalvoti mielą staigmeną pats!';
+  resizeLetterScene();
   const meta=$('guestMeta'); meta.replaceChildren();
   if(data.budget) meta.append(mk('span','pill','🎀 '+data.budget));
   if(data.date) meta.append(mk('span','pill','📅 '+data.date));
@@ -332,7 +369,7 @@ function showGift(data,isDemo){
   $('privacyNote').textContent=isDemo ? 'BANDOMASIS REŽIMAS – šis burtas niekam neišsiųstas.' : '🤫 Pasilik savo burtą paslaptyje.';
   state('back', isDemo);
   state('organizer',false); state('bad',false); state('guest',true);
-  resetAnimation(); window.scrollTo({top:0,behavior:'smooth'});
+  resizeLetterScene(); resetAnimation(); window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function startDemo(){
@@ -367,6 +404,7 @@ function setup(){
 
 $('again').addEventListener('click',resetAnimation);
 $('reveal').addEventListener('click',openAnimation);
+window.addEventListener('resize',()=>{if(!$('guest').classList.contains('hidden'))resizeLetterScene()});
 const m=location.hash.match(/^#dovana=([A-Za-z0-9_-]+)$/);
 if(location.hash.startsWith('#dovana=')){
   if(!m){ state('bad',true); }
