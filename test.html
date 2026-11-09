@@ -333,13 +333,31 @@ main{isolation:isolate}
  #guest .reveal-paper{padding:13px 12px 12px}
  #guest .recipient-name{font-size:34px}
 }
+/* TEST V10: vaikų laiškų Kalėdų Seneliui pavyzdys */
+.family-section{margin-top:22px}
+.family-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:18px}
+.family-card{position:relative;overflow:hidden;border-radius:24px;padding:22px 20px 20px;background:linear-gradient(180deg,rgba(98,21,29,.92),rgba(54,8,15,.95));border:1px solid rgba(242,203,129,.38);box-shadow:0 20px 45px rgba(0,0,0,.22);color:#fff4df}
+.family-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 8% 10%,rgba(255,255,255,.14),transparent 18%),radial-gradient(circle at 92% 14%,rgba(255,213,133,.12),transparent 16%),linear-gradient(180deg,rgba(255,255,255,.05),transparent 25%);pointer-events:none}
+.family-chip{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;background:rgba(255,231,188,.10);border:1px solid rgba(255,227,169,.34);color:#ffe4ac;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.family-card h3{margin:0 0 8px;font:700 30px/1.04 Georgia,serif;color:#fff0d0}
+.family-lead{margin:0 0 14px;color:#f6dcc3;font-size:13px;line-height:1.6}
+.kid-block{position:relative;z-index:1;margin-top:12px;padding:14px 14px 12px;border-radius:18px;background:rgba(255,248,234,.10);border:1px solid rgba(255,229,177,.18);backdrop-filter:blur(2px)}
+.kid-name{font-weight:800;color:#ffe5ad;margin-bottom:8px}
+.kid-block ul{margin:0;padding-left:18px;line-height:1.7;color:#fff8ea}
+.family-note,.family-highlight{margin-top:15px;border-radius:16px;padding:13px 14px;font-size:13px;line-height:1.6}
+.family-note{background:rgba(255,255,255,.08);border:1px solid rgba(255,239,198,.15);color:#fff1d9}
+.family-highlight{background:linear-gradient(180deg,rgba(255,232,191,.18),rgba(255,232,191,.10));border:1px solid rgba(255,223,156,.36);color:#fff2d0}
+.family-card-grand{box-shadow:0 20px 50px rgba(0,0,0,.24),0 0 0 1px rgba(255,219,146,.12) inset}
+@media (max-width:980px){.family-grid{grid-template-columns:1fr}.family-card h3{font-size:28px}}
+@media (max-width:560px){.family-card{padding:18px 16px 16px;border-radius:20px}.family-card h3{font-size:25px}.family-lead,.family-note,.family-highlight{font-size:12px}.kid-block{padding:12px 12px 10px}}
+
 </style>
 </head>
 <body>
 <main>
   <header>
     <div class="brand"><span class="brandmark">✦</span><span>Slaptas Kalėdų burtas</span></div>
-    <div class="badge">TEST V9</div>
+    <div class="badge">TEST V10 · ŠEIMOS PAVYZDYS</div>
   </header>
 
   <section id="organizer">
@@ -382,6 +400,7 @@ main{isolation:isolate}
           <b>✦ Bandomasis režimas</b>
           <p class="small">Demonstracijoje niekam neskiriami tikri burtai. Gali ją kartoti kiek nori.</p>
           <button id="asidePreview" class="ghost" type="button" style="width:100%">Peržiūrėti vokelio atidarymą</button>
+          <a href="#familyLetters" class="button-link secondary" style="width:100%;margin-top:10px">👶 Peržiūrėti vaikų laiškų pavyzdį</a>
         </div>
       </aside>
     </div>
@@ -393,6 +412,87 @@ main{isolation:isolate}
       <div class="controls" style="margin-top:14px">
         <button id="download" class="secondary" type="button">↓ Išsaugoti visas nuorodas</button>
         <button id="copyAll" class="ghost" type="button">📋 Kopijuoti visą sąrašą</button>
+      </div>
+    </section>
+    <section id="familyLetters" class="panel family-section">
+      <div class="results-head">
+        <h2>👶 Pavyzdys: vaikų laiškai Kalėdų Seneliui</h2>
+        <span class="small">Kaip tai galėtų atrodyti šeimai</span>
+      </div>
+      <p class="sub">Čia tik demonstracinis variantas. Vėliau galėsime šią dalį pilnai integruoti į galutinį puslapį arba atskiras nuorodas tėvams, seneliams ir dėdei Rokui.</p>
+      <div class="family-grid">
+
+        <article class="family-card">
+          <div class="family-chip">Tėveliams</div>
+          <h3>Vytautas ir Akvilė</h3>
+          <p class="family-lead">Trumpas vaikų laiškų Kalėdų Seneliui suvestinis variantas tėvams.</p>
+          <div class="kid-block">
+            <div class="kid-name">🎄 Tauras norėtų:</div>
+            <ul>
+              <li>Bazooka</li>
+              <li>PS5 pultelio custom versijos</li>
+              <li>Stalo žaidimo</li>
+            </ul>
+          </div>
+          <div class="kid-block">
+            <div class="kid-name">🧸 Linis norėtų:</div>
+            <ul>
+              <li>Žaidimų virtuvėlės</li>
+              <li>Medinio vaikiško galvosūkio</li>
+              <li>Statybinių kaladėlių (konstruktoriaus)</li>
+            </ul>
+          </div>
+          <div class="family-note">💡 Tėveliai gali pasiskirstyti, kuriuos norus dengia patys, o kuriuos palikti artimiesiems.</div>
+        </article>
+
+        <article class="family-card family-card-grand">
+          <div class="family-chip">Seneliams</div>
+          <h3>Arnis, Danguolė ir Liuda</h3>
+          <p class="family-lead">Bendra senelių kortelė su vaikų norais ir siūlymu susimesti vienai dovanai.</p>
+          <div class="kid-block">
+            <div class="kid-name">🎄 Tauras norėtų:</div>
+            <ul>
+              <li>Bazooka</li>
+              <li>PS5 pultelio custom versijos</li>
+              <li>Stalo žaidimo</li>
+            </ul>
+          </div>
+          <div class="kid-block">
+            <div class="kid-name">🧸 Linis norėtų:</div>
+            <ul>
+              <li>Žaidimų virtuvėlės</li>
+              <li>Medinio vaikiško galvosūkio</li>
+              <li>Statybinių kaladėlių (konstruktoriaus)</li>
+            </ul>
+          </div>
+          <div class="family-highlight">
+            🎁 <b>Siūlymas seneliams:</b> galite susimesti visi trys ant <b>vienos didesnės dovanos</b> iš sąrašo, pavyzdžiui, žaidimų virtuvėlės arba custom PS5 pultelio.
+          </div>
+        </article>
+
+        <article class="family-card">
+          <div class="family-chip">Dėdei</div>
+          <h3>Dėdė Rokas</h3>
+          <p class="family-lead">Atskiras vaikiškų norų sąrašas Rokui.</p>
+          <div class="kid-block">
+            <div class="kid-name">🎄 Taurui tiktų:</div>
+            <ul>
+              <li>Bazooka</li>
+              <li>PS5 pultelio custom versija</li>
+              <li>Stalo žaidimas</li>
+            </ul>
+          </div>
+          <div class="kid-block">
+            <div class="kid-name">🧸 Liniui tiktų:</div>
+            <ul>
+              <li>Žaidimų virtuvėlė</li>
+              <li>Medinis vaikiškas galvosūkis</li>
+              <li>Statybinės kaladėlės</li>
+            </ul>
+          </div>
+          <div class="family-note">✨ Rokas galėtų pasirinkti vieną smagiausią dovaną iš vieno iš vaikų sąrašų.</div>
+        </article>
+
       </div>
     </section>
   </section>
