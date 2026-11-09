@@ -351,26 +351,76 @@ main{isolation:isolate}
 @media (max-width:980px){.family-grid{grid-template-columns:1fr}.family-card h3{font-size:28px}}
 @media (max-width:560px){.family-card{padding:18px 16px 16px;border-radius:20px}.family-card h3{font-size:25px}.family-lead,.family-note,.family-highlight{font-size:12px}.kid-block{padding:12px 12px 10px}}
 
+
+/* TEST V11: three interactive gift envelopes; all earlier Christmas visuals remain. */
+.letter-picker{margin:6px auto 5px;max-width:680px}
+.letter-picker-intro{font:500 19px/1.5 Georgia,serif;color:#f9e4be;margin:9px 0 24px}
+.letter-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.letter-choice{padding:17px 10px 19px;border-radius:20px;min-width:0;flex-direction:column;
+ background:linear-gradient(160deg,rgba(125,27,44,.52),rgba(12,37,42,.72));
+ border:1px solid rgba(243,201,121,.46);box-shadow:0 10px 29px rgba(0,0,0,.32);
+ color:#fff1dd;transition:transform .2s,border-color .2s,box-shadow .2s}
+.letter-choice:hover,.letter-choice:focus-visible{transform:translateY(-5px);border-color:#ffe0a0;box-shadow:0 16px 30px rgba(0,0,0,.4)}
+.letter-choice b{font-size:16px;display:block;margin-top:13px;color:#ffe6b8}
+.letter-choice small{font-size:11px;display:block;color:#e3d3c5;font-weight:500;margin-top:4px;line-height:1.4}
+.mini-envelope{display:grid;place-items:center;position:relative;width:min(95%,154px);height:104px;margin:0 auto;
+ background-image:linear-gradient(0deg,rgba(72,10,18,.1),rgba(128,19,26,.12)),var(--envelope-photo);
+ background-size:cover;background-position:center;border:2px solid rgba(248,216,161,.58);
+ border-radius:9px;box-shadow:0 10px 15px #0006;overflow:hidden}
+.mini-envelope::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#c66d63b5,#7d243aba);
+ clip-path:polygon(0 0,50% 57%,100% 0,100% 100%,0 100%);pointer-events:none}
+.mini-envelope span{position:relative;z-index:1;background:#e9bd70;color:#683f2b;border:2px double #a87843;
+ width:31px;height:31px;border-radius:50%;display:grid;place-items:center;font-size:18px}
+.letter-picker-help{color:#e0c7a9;font-size:12px;margin:19px 0 2px}
+#letterView{max-width:100%}
+#assignedGift{margin:15px 0 0;padding:14px 11px;background:rgba(45,6,13,.58);color:#fff3cd;font-weight:850;
+ border:1px solid rgba(255,219,153,.68);border-radius:11px;font-size:16px;line-height:1.48;text-shadow:0 2px 8px #20080a}
+#jointGiftTip{margin:10px 0 0;padding:11px;color:#fff0cd;background:rgba(34,7,14,.62);
+ border-radius:10px;font-size:12px;line-height:1.4;border:1px dashed rgba(255,224,166,.54)}
+#returnLetters{color:#ffe2a7}
+#guest #letterView .reveal-paper .wish-text{white-space:pre-wrap}
+#guest .reveal-paper .assigned-gift:not(.hidden),#guest .reveal-paper .joint-gift-tip:not(.hidden){display:block}
+@media(max-width:560px){
+ #guest .letter-picker{margin:3px auto 0}
+ #guest .letter-picker-intro{font:500 14px/1.4 Georgia,serif;margin:3px 0 12px}
+ #guest .letter-choices{display:grid;grid-template-columns:1fr;gap:9px}
+ #guest .letter-choice{display:grid;grid-template-columns:94px minmax(0,1fr);grid-template-rows:auto auto;
+   align-items:center;column-gap:11px;row-gap:0;padding:9px 10px;border-radius:15px;text-align:left}
+ #guest .letter-choice .mini-envelope{grid-row:span 2;width:90px;height:62px;margin:0}
+ #guest .letter-choice .mini-envelope span{width:24px;height:24px;font-size:14px}
+ #guest .letter-choice b{font-size:14px;margin:0;align-self:end}
+ #guest .letter-choice small{font-size:11px;margin:4px 0 0;align-self:start}
+ #guest .letter-picker-help{font-size:11px;margin-top:12px}
+ #guest #assignedGift{font-size:12px;padding:9px 8px;margin-top:9px;line-height:1.35}
+ #guest #jointGiftTip{font-size:10px;line-height:1.3;padding:8px;margin-top:7px}
+ #guest #letterView .reveal-paper .wish-text{font-size:12px;line-height:1.32}
+ #guest #letterView .reveal-paper .recipient-name{font-size:clamp(33px,9vw,45px)}
+ #guest #letterView .reveal-paper .wish-title{padding-top:7px;margin-bottom:4px}
+ #guest #letterView .reveal-paper .letter-note{font-size:10px;margin-top:8px;padding-top:7px}
+ #guest #letterView .reveal-paper{padding:13px 13px 12px}
+ #guest #returnLetters{width:100%;font-size:11px;padding:10px 12px}
+}
+
 </style>
 </head>
 <body>
 <main>
   <header>
     <div class="brand"><span class="brandmark">✦</span><span>Slaptas Kalėdų burtas</span></div>
-    <div class="badge">TEST V10 · ŠEIMOS PAVYZDYS</div>
+    <div class="badge">TEST V11 · 3 LAIŠKAI</div>
   </header>
 
   <section id="organizer">
     <div class="hero">
       <div class="eyebrow">✦ Slapti burtai su dovanų norais ✦</div>
       <h1>Kam atiteks tavo <em>staigmena?</em></h1>
-      <p>Prie kiekvieno vardo gali parašyti, kokių dovanėlių žmogus tikisi. Ištraukus burtą iš voko išlįs laiškas su vardu ir norais.</p>
+      <p>Prie kiekvieno vardo gali parašyti dovanų norus. Kiekvienas dalyvis gaus tris vokus: vieną „Secret Santa“ ir du vaikų laiškus Kalėdų Seneliui.</p>
     </div>
 
     <div class="layout">
       <section class="panel">
         <h2>🎄 Dalyviai ir jų norai</h2>
-        <p class="sub">Pageidavimai matysis tik tam žmogui, kuris ištrauks konkretų dalyvį.</p>
+        <p class="sub">Suaugusiųjų pageidavimai matysis ištraukus „Secret Santa“ voką. Tauro ir Linio dovanos automatiškai priskiriamos tėvams, seneliams ir dėdei Rokui.</p>
         <div id="formStatus" class="status" role="status" aria-live="polite"></div>
         <div id="peopleList"></div>
         <button id="addPerson" class="secondary" type="button">＋ Pridėti dalyvį</button>
@@ -399,8 +449,17 @@ main{isolation:isolate}
         <div class="preview-box">
           <b>✦ Bandomasis režimas</b>
           <p class="small">Demonstracijoje niekam neskiriami tikri burtai. Gali ją kartoti kiek nori.</p>
+          <label for="previewRole" class="field-label" style="display:block;margin:12px 0 8px">Kurio dalyvio laiškus išbandyti?</label>
+          <select id="previewRole" aria-label="Demonstracijos dalyvis">
+            <option value="Vytautas">Vytautas (tėvai)</option>
+            <option value="Akvilė">Akvilė (tėvai)</option>
+            <option value="Arnis">Arnis (seneliai)</option>
+            <option value="Danguolė">Danguolė (seneliai)</option>
+            <option value="Liuda">Liuda (seneliai)</option>
+            <option value="Rokas">Rokas (dėdė)</option>
+          </select>
           <button id="asidePreview" class="ghost" type="button" style="width:100%">Peržiūrėti vokelio atidarymą</button>
-          <a href="#familyLetters" class="button-link secondary" style="width:100%;margin-top:10px">👶 Peržiūrėti vaikų laiškų pavyzdį</a>
+          <p class="small">Demonstracijoje matysi visus tris laiškus: „Secret Santa“, Tauro ir Linio.</p>
         </div>
       </aside>
     </div>
@@ -414,87 +473,7 @@ main{isolation:isolate}
         <button id="copyAll" class="ghost" type="button">📋 Kopijuoti visą sąrašą</button>
       </div>
     </section>
-    <section id="familyLetters" class="panel family-section">
-      <div class="results-head">
-        <h2>👶 Pavyzdys: vaikų laiškai Kalėdų Seneliui</h2>
-        <span class="small">Kaip tai galėtų atrodyti šeimai</span>
-      </div>
-      <p class="sub">Čia tik demonstracinis variantas. Vėliau galėsime šią dalį pilnai integruoti į galutinį puslapį arba atskiras nuorodas tėvams, seneliams ir dėdei Rokui.</p>
-      <div class="family-grid">
 
-        <article class="family-card">
-          <div class="family-chip">Tėveliams</div>
-          <h3>Vytautas ir Akvilė</h3>
-          <p class="family-lead">Trumpas vaikų laiškų Kalėdų Seneliui suvestinis variantas tėvams.</p>
-          <div class="kid-block">
-            <div class="kid-name">🎄 Tauras norėtų:</div>
-            <ul>
-              <li>Bazooka</li>
-              <li>PS5 pultelio custom versijos</li>
-              <li>Stalo žaidimo</li>
-            </ul>
-          </div>
-          <div class="kid-block">
-            <div class="kid-name">🧸 Linis norėtų:</div>
-            <ul>
-              <li>Žaidimų virtuvėlės</li>
-              <li>Medinio vaikiško galvosūkio</li>
-              <li>Statybinių kaladėlių (konstruktoriaus)</li>
-            </ul>
-          </div>
-          <div class="family-note">💡 Tėveliai gali pasiskirstyti, kuriuos norus dengia patys, o kuriuos palikti artimiesiems.</div>
-        </article>
-
-        <article class="family-card family-card-grand">
-          <div class="family-chip">Seneliams</div>
-          <h3>Arnis, Danguolė ir Liuda</h3>
-          <p class="family-lead">Bendra senelių kortelė su vaikų norais ir siūlymu susimesti vienai dovanai.</p>
-          <div class="kid-block">
-            <div class="kid-name">🎄 Tauras norėtų:</div>
-            <ul>
-              <li>Bazooka</li>
-              <li>PS5 pultelio custom versijos</li>
-              <li>Stalo žaidimo</li>
-            </ul>
-          </div>
-          <div class="kid-block">
-            <div class="kid-name">🧸 Linis norėtų:</div>
-            <ul>
-              <li>Žaidimų virtuvėlės</li>
-              <li>Medinio vaikiško galvosūkio</li>
-              <li>Statybinių kaladėlių (konstruktoriaus)</li>
-            </ul>
-          </div>
-          <div class="family-highlight">
-            🎁 <b>Siūlymas seneliams:</b> galite susimesti visi trys ant <b>vienos didesnės dovanos</b> iš sąrašo, pavyzdžiui, žaidimų virtuvėlės arba custom PS5 pultelio.
-          </div>
-        </article>
-
-        <article class="family-card">
-          <div class="family-chip">Dėdei</div>
-          <h3>Dėdė Rokas</h3>
-          <p class="family-lead">Atskiras vaikiškų norų sąrašas Rokui.</p>
-          <div class="kid-block">
-            <div class="kid-name">🎄 Taurui tiktų:</div>
-            <ul>
-              <li>Bazooka</li>
-              <li>PS5 pultelio custom versija</li>
-              <li>Stalo žaidimas</li>
-            </ul>
-          </div>
-          <div class="kid-block">
-            <div class="kid-name">🧸 Liniui tiktų:</div>
-            <ul>
-              <li>Žaidimų virtuvėlė</li>
-              <li>Medinis vaikiškas galvosūkis</li>
-              <li>Statybinės kaladėlės</li>
-            </ul>
-          </div>
-          <div class="family-note">✨ Rokas galėtų pasirinkti vieną smagiausią dovaną iš vieno iš vaikų sąrašų.</div>
-        </article>
-
-      </div>
-    </section>
   </section>
 
   <section id="guest" class="guest hidden">
@@ -506,12 +485,33 @@ main{isolation:isolate}
 
     <div class="guest-card">
       <div class="eyebrow" id="greeting">Labas!</div>
+      <div id="letterPicker" class="letter-picker hidden">
+        <p class="letter-picker-intro">🎄 Tau atkeliavo trys kalėdiniai laiškai. Pasirink, kurį voką atplėšti pirmiausia!</p>
+        <div class="letter-choices">
+          <button class="letter-choice" type="button" data-letter="secret" aria-label="Atidaryti Secret Santa burtą">
+            <span class="mini-envelope"><span>✦</span></span>
+            <b>1. Secret Santa</b><small>Tavo ištrauktas žmogus</small>
+          </button>
+          <button class="letter-choice" type="button" data-letter="tauras" aria-label="Atidaryti Tauro laišką">
+            <span class="mini-envelope"><span>✉</span></span>
+            <b>2. Tauro laiškas</b><small>Laiškas Kalėdų Seneliui</small>
+          </button>
+          <button class="letter-choice" type="button" data-letter="linis" aria-label="Atidaryti Linio laišką">
+            <span class="mini-envelope"><span>✉</span></span>
+            <b>3. Linio laiškas</b><small>Laiškas Kalėdų Seneliui</small>
+          </button>
+        </div>
+        <p class="letter-picker-help">Kiekviename voke rasi vis kitokią staigmeną.</p>
+      </div>
+      <div id="letterView" class="hidden">
       <div class="letter-scene" id="letterScene">
         <div class="reveal-paper" id="revealPaper" aria-live="polite">
-          <div class="over">Tu dovanoji dovanėlę šiam žmogui</div>
+          <div class="over" id="letterOver">Tu dovanoji dovanėlę šiam žmogui</div>
           <div class="recipient-name" id="recipientName"></div>
-          <div class="wish-title">🎁 Ko žmogus norėtų?</div>
+          <div class="wish-title" id="wishTitle">🎁 Ko žmogus norėtų?</div>
           <div class="wish-text" id="recipientWish"></div>
+          <div class="assigned-gift hidden" id="assignedGift"></div>
+          <div class="joint-gift-tip hidden" id="jointGiftTip"></div>
           <div class="letter-note">✨ Kviečiame į Kūčių vakarienę Dercekliuose!</div>
         </div>
         <div class="stage">
@@ -527,7 +527,9 @@ main{isolation:isolate}
       <button id="reveal" class="primary" type="button" style="min-width:280px;max-width:100%">✨ Traukti burtą</button>
       <div class="guest-meta hidden" id="guestMeta"></div>
       <p class="guest-message hidden" id="guestMessage"></p>
+      </div>
       <div class="guest-controls">
+        <button id="returnLetters" class="ghost hidden" type="button">← Visi trys laiškai</button>
         <button id="again" class="secondary hidden" type="button">↺ Pažiūrėti dar kartą</button>
         <button id="back" class="ghost hidden" type="button">← Grįžti prie dalyvių</button>
       </div>
@@ -555,9 +557,11 @@ let people=[
   {name:'Arnis',wish:''},
   {name:'Danguolė',wish:''},
   {name:'Liuda',wish:''},
-  {name:'Akvilė',wish:''}
+  {name:'Akvilė',wish:''},
+  {name:'Rokas',wish:''}
 ];
 let links=[]; let createdAt=''; let gift=null; let demo=false; let timer=null;
+let currentLetter='secret';
 
 function state(id,show){ $(id).classList.toggle('hidden',!show); }
 function status(msg,type='error'){ const n=$('formStatus'); n.textContent=msg; n.className='status '+type; }
@@ -646,8 +650,8 @@ function resetAnimation(){
   if(timer) clearTimeout(timer);
   $('letterScene').classList.remove('opening','opened');
   $('reveal').disabled=false; $('reveal').textContent='✨ Traukti burtą';
-  $('guestHint').textContent='Paspausk mygtuką ir stebėk, kaip laiškas išlenda iš voko.';
-  $('guestHeading').textContent='Tavo slaptasis žmogus!';
+  $('guestHint').textContent=currentLetter==='secret'?'Tuoj atskleisime tavo slaptąjį žmogų.':'Kalėdų Seneliui adresuotas laiškas jau voke...';
+  $('guestHeading').textContent=currentLetter==='secret'?'Tavo slaptasis žmogus!':CHILD_LETTERS[currentLetter].name+' rašo Kalėdų Seneliui';
   state('guestMeta',false); state('guestMessage',false);
   state('again',false);
 }
@@ -660,8 +664,8 @@ function openAnimation(){
   timer=setTimeout(()=>{
     $('letterScene').classList.remove('opening');
     $('letterScene').classList.add('opened');
-    $('guestHeading').textContent='Štai tavo žmogus!';
-    $('guestHint').textContent='Laiške matai vardą ir dovanų norus.';
+    $('guestHeading').textContent=currentLetter==='secret'?'Štai tavo žmogus!':CHILD_LETTERS[currentLetter].name+' laiškas atplėštas!';
+    $('guestHint').textContent=currentLetter==='secret'?'Laiške matai vardą ir dovanų norus.':'Štai vaiko laiškas ir tau paskirta dovana.';
     state('guestMeta', $('guestMeta').children.length>0);
     state('guestMessage', !!gift.message);
     state('again',true);
@@ -672,27 +676,85 @@ function openAnimation(){
 
 function showGift(data,isDemo){
   gift=data; demo=isDemo;
-  fillMeta(data);
   $('greeting').textContent='Labas, '+data.from+'! ✦';
-  $('guestEyebrow').textContent=isDemo ? '✦ Demonstracija – tik testas ✦' : '✦ Tavo asmeninis Kalėdų burtas ✦';
-  $('privacyNote').textContent=isDemo ? 'BANDOMASIS REŽIMAS – šis burtas niekam neišsiųstas.' : '🤫 Pasilik savo burtą paslaptyje.';
-  state('back', isDemo);
-  state('organizer',false); state('bad',false); state('guest',true);
-  resizeLetterScene(); resetAnimation(); window.scrollTo({top:0,behavior:'smooth'});
+  $('guestEyebrow').textContent=isDemo?'✦ Demonstracija – tik testas ✦':'✦ Tavo asmeniniai Kalėdų laiškai ✦';
+  $('privacyNote').textContent=isDemo?'BANDOMASIS REŽIMAS – šie laiškai niekam neišsiųsti.':'🤫 „Secret Santa“ burtą pasilik paslaptyje.';
+  state('back',isDemo); state('organizer',false); state('bad',false); state('guest',true);
+  showLetterPicker(); window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function startDemo(){
-  const from=(people.find(p=>p.name.trim())||{name:'Vytautas'}).name.trim();
-  // Demonstracijoje rodome ilgiausią vardą, kad patikrintume, ar jis telpa ant laiško.
-  const candidates=people.filter(p=>p.name.trim()&&p.name.trim()!==from);
-  const target=candidates.reduce((longest,p)=>
+  const from=$('previewRole')?.value||'Vytautas';
+  const available=people.filter(p=>p.name.trim()&&p.name.trim().toLocaleLowerCase('lt-LT')!==from.toLocaleLowerCase('lt-LT'));
+  const target=available.reduce((longest,p)=>
     !longest||Array.from(p.name.trim()).length>Array.from(longest.name.trim()).length?p:longest,null)
     ||{name:'Danguolė',wish:''};
   showGift({from,to:target.name.trim(),wish:(target.wish||'').trim()||'Jaukus pledas, knyga arba kvapni arbata',...settings()},true);
 }
 
+
+const FAMILY_GIFTS={
+  'vytautas':{role:'Tėvams',tauras:'Stalo žaidimas',linis:'Medinis vaikiškas galvosūkis'},
+  'akvilė':{role:'Tėvams',tauras:'Stalo žaidimas',linis:'Medinis vaikiškas galvosūkis'},
+  'arnis':{role:'Seneliams',tauras:'Bazooka',linis:'Žaidimų virtuvėlė'},
+  'danguolė':{role:'Seneliams',tauras:'Bazooka',linis:'Žaidimų virtuvėlė'},
+  'liuda':{role:'Seneliams',tauras:'Bazooka',linis:'Žaidimų virtuvėlė'},
+  'rokas':{role:'Dėdei Rokui',tauras:'Individualizuotas PS5 pultelis (custom)',linis:'Statybinės kaladėlės (konstruktorius)'}
+};
+const CHILD_LETTERS={
+  tauras:{name:'Tauras',text:'Mielas Kalėdų Seneli,\n\nLabai laukiu Kalėdų ir svajoju apie smagią dovaną po eglute. Ačiū, kad perskaitei mano laišką!\n\nTauras'},
+  linis:{name:'Linis',text:'Labas, Kalėdų Seneli!\n\nAš labai mėgstu žaisti ir džiaugiuosi artėjančiomis Kalėdomis. Tikiuosi rasti po eglute dovanėlę. Ačiū!\n\nLinis'}
+};
+function letterRole(from){return FAMILY_GIFTS[String(from||'').trim().toLocaleLowerCase('lt-LT')]||null;}
+function showLetterPicker(){
+  if(timer){clearTimeout(timer);timer=null;}
+  currentLetter='secret';
+  $('letterScene').classList.remove('opening','opened');
+  state('letterPicker',true); state('letterView',false);
+  state('returnLetters',false); state('again',false);
+  $('guestHeading').textContent='Tavęs laukia trys laiškai!';
+  $('guestHint').textContent='Vienas su tavo „Secret Santa“ burtu, du – nuo Tauro ir Linio.';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function chooseLetter(kind){
+  if(!gift)return;
+  currentLetter=kind;
+  state('letterPicker',false); state('letterView',true);
+  state('returnLetters',true);
+  const family=letterRole(gift.from);
+  const child=CHILD_LETTERS[kind];
+  if(kind==='secret'){
+    fillMeta(gift);
+    $('letterOver').textContent='Tu dovanoji dovanėlę šiam žmogui';
+    $('wishTitle').textContent='🎁 Ko žmogus norėtų?';
+    state('assignedGift',false); state('jointGiftTip',false);
+    $('letterNote').textContent='✨ Kviečiame į Kūčių vakarienę Dercekliuose!';
+  } else if(child){
+    $('letterOver').textContent='✉ Laiškas Kalėdų Seneliui';
+    $('recipientName').textContent=child.name;
+    $('wishTitle').textContent='🎄 Nuoširdus laiškelis';
+    $('recipientWish').textContent=child.text;
+    $('assignedGift').textContent='🎁 Tau priskirta '+child.name+(child.name==='Tauras'?'o':'')+' dovana: '+(family?family[kind]:'dovana dar nepriskirta');
+    state('assignedGift',true);
+    $('jointGiftTip').textContent='💝 Seneliams siūlome visiems trims susimesti vienai didesnei dovanai (Tauro „Bazooka“ arba Linio virtuvėlei) ir susitarti tarpusavyje.';
+    state('jointGiftTip',family?.role==='Seneliams');
+    $('letterNote').textContent='✨ Kviečiame į Kūčių vakarienę Dercekliuose!';
+    state('guestMeta',false);state('guestMessage',false);
+  } else {showLetterPicker();return;}
+  resizeLetterScene();
+  resetAnimation();
+  // Voko pasirinkimas iš karto paleidžia to laiško atidarymą.
+  requestAnimationFrame(()=>requestAnimationFrame(openAnimation));
+}
+
 function setup(){
-  load(); renderPeople(); renderLinks();
+  load();
+  if(!localStorage.getItem('secret-santa-add-rokas-v1')){
+    if(!people.some(p=>p.name.trim().toLocaleLowerCase('lt-LT')==='rokas'))people.push({name:'Rokas',wish:''});
+    try{localStorage.setItem('secret-santa-add-rokas-v1','1')}catch(e){}
+    save();
+  }
+  renderPeople(); renderLinks();
   ['budget','date','message'].forEach(id=>$(id).addEventListener('input',save));
   $('addPerson').addEventListener('click',()=>{ if(people.length>=30){ status('Daugiausia 30 dalyvių.'); return; } people.push({name:'',wish:''}); renderPeople(); save(); });
   $('preview').addEventListener('click',startDemo);
@@ -715,6 +777,8 @@ function setup(){
   });
 }
 
+document.querySelectorAll('[data-letter]').forEach(btn=>btn.addEventListener('click',()=>chooseLetter(btn.dataset.letter)));
+$('returnLetters').addEventListener('click',showLetterPicker);
 $('again').addEventListener('click',resetAnimation);
 $('reveal').addEventListener('click',openAnimation);
 window.addEventListener('resize',()=>{if(!$('guest').classList.contains('hidden'))resizeLetterScene()});
