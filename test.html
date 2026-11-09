@@ -512,7 +512,7 @@ main{isolation:isolate}
           <div class="wish-text" id="recipientWish"></div>
           <div class="assigned-gift hidden" id="assignedGift"></div>
           <div class="joint-gift-tip hidden" id="jointGiftTip"></div>
-          <div class="letter-note">✨ Kviečiame į Kūčių vakarienę Dercekliuose!</div>
+          <div class="letter-note" id="letterNote">✨ Kviečiame į Kūčių vakarienę Dercekliuose!</div>
         </div>
         <div class="stage">
           <div class="envelope">
@@ -734,7 +734,7 @@ function chooseLetter(kind){
     $('recipientName').textContent=child.name;
     $('wishTitle').textContent='🎄 Nuoširdus laiškelis';
     $('recipientWish').textContent=child.text;
-    $('assignedGift').textContent='🎁 Tau priskirta '+child.name+(child.name==='Tauras'?'o':'')+' dovana: '+(family?family[kind]:'dovana dar nepriskirta');
+    $('assignedGift').textContent='🎁 Tau priskirta '+(child.name==='Tauras'?'Tauro':'Linio')+' dovana: '+(family?family[kind]:'dovana dar nepriskirta');
     state('assignedGift',true);
     $('jointGiftTip').textContent='💝 Seneliams siūlome visiems trims susimesti vienai didesnei dovanai (Tauro „Bazooka“ arba Linio virtuvėlei) ir susitarti tarpusavyje.';
     state('jointGiftTip',family?.role==='Seneliams');
