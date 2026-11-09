@@ -254,13 +254,50 @@ main{isolation:isolate}
  .reveal-paper .letter-note{font-size:14px}
 }
 
+
+
+/* TEST V7: revealed letter background also matches the envelope Christmas theme. */
+.reveal-paper{
+  background:
+    linear-gradient(180deg,rgba(255,248,238,.93) 0%,rgba(247,237,220,.92) 100%),
+    radial-gradient(circle at 10% 12%,rgba(255,255,255,.22),transparent 18%),
+    var(--envelope-photo) center/cover no-repeat !important;
+  border:1px solid rgba(158,62,57,.28) !important;
+  box-shadow:0 28px 46px rgba(0,0,0,.34), inset 0 0 0 3px rgba(247,215,147,.22) !important;
+}
+.reveal-paper::before{
+  height:14px !important;
+  background:
+    linear-gradient(90deg,rgba(177,74,85,.20),rgba(248,215,151,.72),rgba(177,74,85,.20)),
+    var(--envelope-photo) center/cover no-repeat !important;
+  border-bottom:1px solid rgba(161,62,56,.18);
+}
+.reveal-paper::after{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:1px solid rgba(176,78,67,.14);
+  border-radius:6px 6px 18px 18px;
+  pointer-events:none;
+}
+.reveal-paper .over{color:#9f5f48 !important;}
+.reveal-paper .wish-title{
+  border-top:1px solid rgba(181,154,116,.62) !important;
+  color:#6e5043 !important;
+}
+.reveal-paper .wish-text{color:#4d3a32;font-weight:500;}
+.reveal-paper .letter-note{
+  border-top:1px dashed rgba(156,95,82,.42) !important;
+  color:#a43d45 !important;
+}
+
 </style>
 </head>
 <body>
 <main>
   <header>
     <div class="brand"><span class="brandmark">✦</span><span>Slaptas Kalėdų burtas</span></div>
-    <div class="badge">TEST V6</div>
+    <div class="badge">TEST V7</div>
   </header>
 
   <section id="organizer">
