@@ -256,39 +256,37 @@ main{isolation:isolate}
 
 
 
-/* TEST V7: revealed letter background also matches the envelope Christmas theme. */
+/* TEST V8: full red Christmas pattern on the revealed letter. */
 .reveal-paper{
-  background:
-    linear-gradient(180deg,rgba(255,248,238,.93) 0%,rgba(247,237,220,.92) 100%),
-    radial-gradient(circle at 10% 12%,rgba(255,255,255,.22),transparent 18%),
-    var(--envelope-photo) center/cover no-repeat !important;
-  border:1px solid rgba(158,62,57,.28) !important;
-  box-shadow:0 28px 46px rgba(0,0,0,.34), inset 0 0 0 3px rgba(247,215,147,.22) !important;
+ background-color:#922c27 !important;
+ background-image:linear-gradient(180deg,rgba(32,6,12,.27),rgba(62,9,17,.32)),var(--envelope-photo) !important;
+ background-position:center,center center !important;
+ background-size:cover,cover !important;
+ background-repeat:no-repeat !important;
+ border:2px solid rgba(244,205,126,.82) !important;
+ box-shadow:0 30px 56px rgba(0,0,0,.55),inset 0 0 0 3px rgba(255,226,169,.18) !important;
+ color:#fff2d9 !important;
+ text-shadow:0 2px 8px rgba(21,5,9,.50);
 }
 .reveal-paper::before{
-  height:14px !important;
-  background:
-    linear-gradient(90deg,rgba(177,74,85,.20),rgba(248,215,151,.72),rgba(177,74,85,.20)),
-    var(--envelope-photo) center/cover no-repeat !important;
-  border-bottom:1px solid rgba(161,62,56,.18);
+ height:9px !important;
+ background:linear-gradient(90deg,rgba(242,201,124,.25),rgba(255,230,166,.80),rgba(242,201,124,.25)) !important;
+ border-bottom:1px solid rgba(253,219,146,.55);
 }
 .reveal-paper::after{
-  content:"";
-  position:absolute;
-  inset:14px;
-  border:1px solid rgba(176,78,67,.14);
-  border-radius:6px 6px 18px 18px;
-  pointer-events:none;
+ content:"";position:absolute;inset:13px;border:1px solid rgba(249,221,156,.30);
+ border-radius:6px 6px 17px 17px;pointer-events:none;
 }
-.reveal-paper .over{color:#9f5f48 !important;}
+.reveal-paper .over{color:#ffe0a8 !important;text-shadow:0 2px 8px rgba(20,2,7,.75);}
+.reveal-paper .recipient-name{color:#fff0c9 !important;text-shadow:0 4px 12px rgba(27,3,6,.78),0 0 16px rgba(0,0,0,.32);}
 .reveal-paper .wish-title{
-  border-top:1px solid rgba(181,154,116,.62) !important;
-  color:#6e5043 !important;
+ border-top:1px solid rgba(255,222,161,.62) !important;
+ color:#ffe7b4 !important;text-shadow:0 2px 6px rgba(23,2,7,.68);
 }
-.reveal-paper .wish-text{color:#4d3a32;font-weight:500;}
+.reveal-paper .wish-text{color:#fff8e8 !important;font-weight:600;text-shadow:0 2px 8px rgba(30,4,8,.7);}
 .reveal-paper .letter-note{
-  border-top:1px dashed rgba(156,95,82,.42) !important;
-  color:#a43d45 !important;
+ border-top:1px dashed rgba(255,221,158,.64) !important;
+ color:#ffe4a4 !important;text-shadow:0 2px 8px rgba(25,3,8,.75);
 }
 
 </style>
@@ -297,7 +295,7 @@ main{isolation:isolate}
 <main>
   <header>
     <div class="brand"><span class="brandmark">✦</span><span>Slaptas Kalėdų burtas</span></div>
-    <div class="badge">TEST V7</div>
+    <div class="badge">TEST V8</div>
   </header>
 
   <section id="organizer">
