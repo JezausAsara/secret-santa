@@ -329,7 +329,6 @@ function setup(){
  $('addPerson').addEventListener('click',()=>{if(people.length>=30){alertBox('Daugiausia 30 dalyvių.');return}people.push({name:'',wish:''});renderPeople();persist();$('peopleList').lastElementChild.querySelector('input').focus()});
  $('preview').addEventListener('click',startDemo);$('asidePreview').addEventListener('click',startDemo);
  $('back').addEventListener('click',()=>{resetAnimation();stateClass('guest',false);stateClass('organizer',true);window.scrollTo({top:0,behavior:'instant'})});
- $('reveal').addEventListener('click',openAnimation);$('again').addEventListener('click',resetAnimation);
  $('draw').addEventListener('click',async()=>{
   clearAlert();let names;try{names=validate()}catch(e){alertBox(e.message);return}
   if(!crypto?.subtle||!window.isSecureContext){alertBox('Nuorodoms generuoti reikia HTTPS puslapio.');return}
@@ -352,6 +351,8 @@ function setup(){
  $('copyAll').addEventListener('click',async()=>{try{await copy(resultText());$('copyAll').textContent='✓ Nukopijuota';setTimeout(()=>$('copyAll').textContent='📋 Kopijuoti sąrašą',2300)}catch{alertBox('Nepavyko nukopijuoti.')}});
  $('download').addEventListener('click',()=>{const blob=new Blob([resultText()],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=make('a');a.href=url;a.download='secret-santa-burtu-nuorodos.txt';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)});
 }
+$('reveal').addEventListener('click',openAnimation);
+$('again').addEventListener('click',resetAnimation);
 const token=location.hash.match(/^#dovana=([A-Za-z0-9_-]+)$/);
 if(location.hash.startsWith('#dovana=')){
  if(!token){stateClass('bad',true)}
