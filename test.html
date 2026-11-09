@@ -537,8 +537,12 @@ function showGift(data,isDemo){
 
 function startDemo(){
   const from=(people.find(p=>p.name.trim())||{name:'Vytautas'}).name.trim();
-  const target=(people.find(p=>p.name.trim()&&p.name.trim()!==from)||{name:'Arnis',wish:'Žvejybos reikmenys'});
-  showGift({from,to:target.name.trim(),wish:(target.wish||'').trim()||'Žvejybos reikmenys',...settings()},true);
+  // Demonstracijoje rodome ilgiausią vardą, kad patikrintume, ar jis telpa ant laiško.
+  const candidates=people.filter(p=>p.name.trim()&&p.name.trim()!==from);
+  const target=candidates.reduce((longest,p)=>
+    !longest||Array.from(p.name.trim()).length>Array.from(longest.name.trim()).length?p:longest,null)
+    ||{name:'Danguolė',wish:''};
+  showGift({from,to:target.name.trim(),wish:(target.wish||'').trim()||'Jaukus pledas, knyga arba kvapni arbata',...settings()},true);
 }
 
 function setup(){
