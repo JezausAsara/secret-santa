@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#09241f">
+<meta name="robots" content="noindex, nofollow">
+<title>Secret Santa – bandomoji versija 🎄</title>
+<style>
+:root{color-scheme:dark;--bg:#081c19;--forest:#0e3028;--card:#14372f;--border:rgba(240,219,168,.2);--gold:#f2ca7d;--cream:#fff5e2;--muted:#b5c8bf;--red:#af4253;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0%,#225045 0,transparent 40%),radial-gradient(ellipse at 90% 23%,#512b35 0,transparent 35%),linear-gradient(155deg,#0c2b24,#061714 70%);color:var(--cream)}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.3;background-image:radial-gradient(white 1px,transparent 1.5px),radial-gradient(#f2ca7d 1px,transparent 1.5px);background-position:0 0,40px 70px;background-size:119px 107px,179px 149px}
+main{max-width:1120px;margin:auto;padding:23px 24px 70px;position:relative}
+header{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:57px}
+.brand{font-weight:850;text-transform:uppercase;letter-spacing:.13em;font-size:14px;display:flex;align-items:center;gap:12px}
+.brandmark{width:43px;height:43px;border-radius:14px;display:grid;place-items:center;font-size:25px;border:1px solid #b7a46a80;background:#e5c67d1a}
+.test-label{font-size:12px;letter-spacing:.13em;font-weight:850;color:#f8dc99;border:1px solid #f2ca7d75;padding:9px 12px;border-radius:30px;background:#b7844322}
+h1,h2,h3,p{margin-top:0}
+.hero{text-align:center;max-width:780px;margin:0 auto 39px}
+.eyebrow{letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-size:11px;font-weight:800;margin-bottom:15px}
+.hero h1{font:500 clamp(46px,7.8vw,79px)/1.03 Georgia,serif;letter-spacing:-.048em;margin:0 0 18px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{font-size:16px;line-height:1.7;color:var(--muted);max-width:610px;margin:0 auto}
+.layout{display:grid;grid-template-columns:minmax(0,1.26fr) minmax(285px,.74fr);gap:20px;align-items:start}
+.panel{border:1px solid var(--border);border-radius:23px;background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.035));box-shadow:0 18px 65px #0003;padding:26px;backdrop-filter:blur(7px)}
+.panel h2{font-size:21px;letter-spacing:-.02em;margin:0 0 9px}
+.sub{color:var(--muted);font-size:13px;line-height:1.6;margin:0 0 24px}
+.section-head{display:flex;justify-content:space-between;gap:15px;align-items:center;margin:24px 0 13px}
+.section-head h3{margin:0;font-size:16px}
+.small{font-size:12px;color:var(--muted);line-height:1.6}
+.person-editor{display:grid;grid-template-columns:43px minmax(0,1fr) 35px;gap:12px;padding:16px 0;border-top:1px solid var(--border);align-items:start}
+.person-avatar{height:39px;width:39px;border-radius:50%;display:grid;place-items:center;color:var(--gold);background:#275344;font:700 20px Georgia,serif}
+.person-fields{display:grid;gap:9px;min-width:0}
+.field-label{font-size:12px;font-weight:750;color:#e9e5d8}
+input,textarea{width:100%;display:block;color:var(--cream);background:#04161076;border:1px solid #d8cda03b;border-radius:11px;padding:12px 13px;font:inherit;font-size:14px;outline:none}
+textarea{min-height:74px;line-height:1.55;resize:vertical}
+input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px #f2ca7d1b}
+input::placeholder,textarea::placeholder{color:#829b91}
+.field{margin:0 0 17px}
+.field label{display:block;margin-bottom:8px;font-size:12px;font-weight:700}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+button,.button-link{font:inherit;cursor:pointer;display:inline-flex;justify-content:center;align-items:center;gap:8px;border-radius:12px;text-decoration:none;border:1px solid transparent;padding:12px 15px;font-size:13px;font-weight:800;transition:transform .2s,background .2s}
+button:hover,.button-link:hover{transform:translateY(-1px)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+button:disabled{opacity:.55;cursor:wait}
+.primary{background:linear-gradient(130deg,#eabe70,#f9dfa6);color:#14241e}
+.secondary{border:1px solid #f1e0bf37;background:#ffffff13;color:var(--cream)}
+.ghost{border:1px solid #f2ca7d66;background:transparent;color:var(--gold)}
+.icon-button{background:#ffffff0a;color:#d9bcb8;border:1px solid #ffffff1c;padding:8px;font-size:18px;line-height:1;min-width:32px}
+.wide{width:100%;padding:15px}
+.controls{display:flex;gap:10px;flex-wrap:wrap}
+.controls>*{flex:1}
+.hr{height:1px;background:var(--border);margin:24px 0}
+.info{margin:12px 0 0;text-align:center;font-size:12px;color:var(--muted);line-height:1.6}
+.notice{padding:12px 14px;border-radius:11px;background:#f0ca7b18;border:1px solid #f0ca7b44;color:#f5e2ba;font-size:12px;line-height:1.6;margin-bottom:17px}
+.status{display:none;border-radius:11px;padding:12px 14px;margin:0 0 17px;font-size:13px;line-height:1.55}
+.status.error{display:block;border:1px solid #d06b7190;background:#9d39412f;color:#ffdadc}
+.status.success{display:block;border:1px solid #74bd8d6b;background:#3e9b6c2b;color:#d6f9de}
+.steps{display:grid;gap:23px}
+.step{display:flex;gap:13px}
+.step-num{width:36px;height:36px;border:1px solid #eabe7060;flex:none;display:grid;place-items:center;border-radius:50%;color:var(--gold);font:20px Georgia,serif}
+.step b{font-size:14px}
+.step p{color:var(--muted);line-height:1.7;font-size:12px;margin:5px 0 0}
+.preview-panel{margin-top:24px;border:1px solid #eabe704d;border-radius:18px;padding:18px;background:#f2ca7d10}
+.preview-panel h3{margin:0 0 7px;font-size:16px}
+.preview-panel p{color:var(--muted);font-size:12px;line-height:1.6;margin:0 0 13px}
+.results{margin-top:22px}
+.results-head{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.results-head h2{margin:0}
+.link-row{display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid var(--border);border-radius:14px;background:#ffffff08;padding:13px;margin-bottom:9px}
+.person-info{display:flex;gap:12px;align-items:center;min-width:0}
+.person-info .person-avatar{height:34px;width:34px;font-size:17px}
+.person-info b{display:block;font-size:14px;overflow-wrap:anywhere}
+.row-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.row-actions button,.row-actions a{font-size:12px;padding:10px 12px;white-space:nowrap}
+.hidden{display:none!important}
+.guest{max-width:700px;margin:auto}
+.guest .hero{margin-bottom:22px}
+.guest-card{text-align:center;border-radius:27px;background:radial-gradient(ellipse at top,#f2ca7d15,transparent 65%),linear-gradient(160deg,#ffffff12,#ffffff08);border:1px solid #eabe705b;padding:29px 25px 38px;box-shadow:0 25px 100px #0004}
+.guest-card h2{font:500 clamp(29px,5vw,44px) Georgia,serif;margin:7px 0 10px}
+.guest-sub{font-size:14px;color:var(--muted);line-height:1.65;margin:0}
+.stage{height:260px;position:relative;display:grid;place-items:center;perspective:750px;margin:8px auto}
+.envelope{width:240px;height:152px;position:relative;filter:drop-shadow(0 22px 17px #0005);transform-style:preserve-3d;transition:transform .4s}
+.env-back{position:absolute;inset:0;border-radius:8px;background:#c88c63;box-shadow:inset 0 0 0 2px #ffffff38}
+.env-paper{position:absolute;left:19px;right:19px;bottom:11px;height:120px;background:linear-gradient(#fff9ed,#e9dbc5);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#86664a;z-index:1;transform:translateY(0);transition:transform .8s 1.12s}
+.env-paper span:first-child{font-size:25px;color:#b44854}
+.env-paper span:last-child{letter-spacing:.2em;font-size:10px;font-weight:850;margin-top:7px}
+.env-front{position:absolute;inset:0;z-index:3;border-radius:8px;background:linear-gradient(135deg,#bd604f,#9d3944);clip-path:polygon(0 0,50% 54%,100% 0,100% 100%,0 100%);border-bottom:2px solid #e9ad81}
+.env-flap{position:absolute;left:0;right:0;top:0;height:121px;z-index:4;clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(160deg,#e6a87f,#c35d65);transform-origin:50% 0;transition:transform .74s .66s}
+.env-seal{position:absolute;top:55px;left:calc(50% - 22px);z-index:5;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#e7b75c;color:#643e2d;border:3px double #9f6937;box-shadow:0 3px 5px #0003;transition:opacity .2s .6s}
+.stage:before,.stage:after{content:"✦";position:absolute;color:#f2ca7d;opacity:.7;font-size:24px;top:25px;left:18%;animation:float 3s ease-in-out infinite}
+.stage:after{content:"✧";left:auto;right:17%;top:52px;animation-delay:.8s;font-size:33px}
+.stage.opening .envelope{animation:shake .72s ease-in-out}
+.stage.opening .env-flap,.stage.opened .env-flap{transform:rotateX(180deg);z-index:0}
+.stage.opening .env-paper,.stage.opened .env-paper{transform:translateY(-73px)}
+.stage.opening .env-seal,.stage.opened .env-seal{opacity:0}
+.stage.opened .envelope{transform:translateY(30px) scale(.87)}
+@keyframes shake{0%,100%{transform:rotate(0)}20%{transform:rotate(-8deg) translateX(-7px)}40%{transform:rotate(8deg) translateX(7px)}60%{transform:rotate(-5deg)}80%{transform:rotate(4deg)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-10deg)}50%{transform:translateY(-15px) rotate(13deg)}}
+.reveal-card{max-width:470px;margin:-5px auto 17px;background:linear-gradient(150deg,#fff9e9,#ecdbc1);color:#403129;padding:26px 27px 29px;border-radius:6px 6px 19px 19px;box-shadow:0 14px 32px #0005;text-align:center;position:relative}
+.reveal-card.show{display:block;animation:letter-slide .85s cubic-bezier(.14,.81,.26,1.03) both}
+@keyframes letter-slide{from{opacity:0;transform:translateY(-105px) scale(.83)}to{opacity:1;transform:translateY(0) scale(1)}}
+.reveal-card .over{color:#9b6755;letter-spacing:.15em;text-transform:uppercase;font-weight:800;font-size:11px}
+.recipient-name{font:600 clamp(39px,7vw,59px) Georgia,serif;color:#a63f4b;overflow-wrap:anywhere;margin:7px 0 13px}
+.wish-box{border-top:1px solid #b9987866;padding-top:17px}
+.wish-box h3{font-size:13px;letter-spacing:.05em;color:#6e594d;margin:0 0 8px}
+.wish-box p{white-space:pre-wrap;overflow-wrap:anywhere;color:#57463a;line-height:1.55;font-size:15px;margin:0}
+.guest-meta{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:15px auto}
+.pill{border:1px solid #d3af75aa;border-radius:99px;font-size:12px;color:#eddbb5;padding:7px 12px}
+.guest-message{font-size:13px;color:#e4cfae;line-height:1.6;white-space:pre-wrap}
+.guest-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:15px}
+.foot{margin:44px 0 0;text-align:center;color:#779b89;font-size:12px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.preview-panel{margin-top:20px}}
+@media(max-width:540px){main{padding:16px 14px 52px}header{margin-bottom:42px}.brand{font-size:11px;letter-spacing:.09em}.test-label{font-size:10px;padding:8px}.panel{padding:18px}.hero p{font-size:14px}.person-editor{grid-template-columns:33px minmax(0,1fr) 30px;gap:8px}.person-avatar{width:32px;height:32px;font-size:17px}.twocol{grid-template-columns:1fr;gap:0}.link-row{align-items:flex-start}.row-actions{flex-direction:column}.row-actions>*{width:100%}.guest-card{padding:23px 15px 30px}.envelope{transform:scale(.86)}.stage.opened .envelope{transform:translateY(28px) scale(.77)}.reveal-card{padding:24px 16px}.guest-controls .button-link,.guest-controls button{flex:1}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<main>
+<header><div class="brand"><span class="brandmark">✦</span><span>Slaptas Kalėdų burtas</span></div><span class="test-label">BANDOMOJI VERSIJA</span></header>
+<section id="organizer">
+  <div class="hero"><div class="eyebrow">✦ Šiemet norai keliauja kartu su burtais ✦</div><h1>Kam atiteks tavo <em>staigmena?</em></h1><p>Prie kiekvieno vardo įrašyk dovanų norus. Visi gaus po vieną asmeninę nuorodą, o slaptas vokelis atskleis vardą ir pageidavimus.</p></div>
+  <div class="layout">
+    <section class="panel" aria-label="Burtų nustatymai">
+      <h2>🎄 Dalyviai ir jų norai</h2><p class="sub">Pageidavimai nėra privalomi. Traukiantis žmogus matys tik savo ištrauktos dovanos gavėjo norus.</p>
+      <div id="formStatus" class="status" role="status" aria-live="polite"></div>
+      <div id="peopleList"></div>
+      <button id="addPerson" class="secondary" type="button">＋ Pridėti dalyvį</button>
+      <div class="hr"></div>
+      <div class="twocol">
+       <div class="field"><label for="budget">Dovanos biudžetas</label><input id="budget" maxlength="50" placeholder="Pvz., iki 25 €"></div>
+       <div class="field"><label for="date">Dovanų įteikimo data</label><input id="date" maxlength="70" placeholder="Pvz., gruodžio 24 d."></div>
+      </div>
+      <div class="field"><label for="message">Trumpas palinkėjimas visiems</label><input id="message" maxlength="160" placeholder="Ššš... išlaikyk paslaptį!"></div>
+      <div class="controls">
+       <button id="preview" type="button" class="secondary">✉ Išbandyti animaciją</button>
+       <button id="draw" type="button" class="primary">🎁 Sugeneruoti nuorodas</button>
+      </div>
+      <p class="info">Niekas neištrauks savęs · Kiekvienas gavėjas priskiriamas tik kartą · Veikia be duomenų bazės</p>
+    </section>
+    <aside class="panel">
+      <h2>Kaip veikia?</h2><p class="sub">Pirmiausia išbandyk, tik tada išsiųsk nuorodas.</p>
+      <div class="steps">
+       <div class="step"><span class="step-num">1</span><div><b>Įrašyk norus</b><p>Prie Vytauto, Arnio, Danguolės, Liudos ir Akvilės vardų gali įrašyti norimas dovanėles.</p></div></div>
+       <div class="step"><span class="step-num">2</span><div><b>Pažiūrėk demonstraciją</b><p>Pamatysi vokelio animaciją ir išlendantį laišką su vardu bei pageidavimais. Tai dar ne tikri burtai.</p></div></div>
+       <div class="step"><span class="step-num">3</span><div><b>Išsiųsk slaptas nuorodas</b><p>Paspausk „Sugeneruoti nuorodas“. Kiekvienam dalyviui nusiųsk tik jam skirtą nuorodą.</p></div></div>
+      </div>
+      <div class="preview-panel"><h3>✦ Bandomasis režimas</h3><p>Gali išbandyti net neužpildęs pageidavimų. Tokiu atveju demonstracijoje parodysiu pavyzdinį dovanų norą.</p><button id="asidePreview" type="button" class="ghost wide">Peržiūrėti vokelio atidarymą</button></div>
+      <div class="hr"></div>
+      <p class="small">🔒 Kiekvienoje asmeninėje nuorodoje užšifruota tik to dalyvio užduotis. Kiekvienas, turintis konkrečią nuorodą, gali ją atidaryti. Pasikeitus norams, jau išsiųstos nuorodos automatiškai neatsinaujins.</p>
+    </aside>
+  </div>
+  <section class="panel results hidden" id="results">
+    <div class="results-head"><h2>✦ Asmeninės nuorodos paruoštos!</h2><span class="small" id="drawDate"></span></div>
+    <p class="sub">Kopijuok <strong>kiekvienam tik jo nuorodą</strong>. Mygtuku „Patikrinti“ gali pamatyti, ką matys dalyvis. Atidarius nuorodą burtai nepasikeis.</p>
+    <div id="linkList"></div>
+    <div class="controls" style="margin-top:17px"><button id="download" class="secondary" type="button">↓ Išsaugoti visas nuorodas</button><button id="copyAll" class="ghost" type="button">📋 Kopijuoti sąrašą</button></div>
+    <p class="small" style="margin-top:13px">Išsaugok nuorodų sąrašą. Neskelbk viso sąrašo grupiniame pokalbyje.</p>
+  </section>
+</section>
+<section id="guest" class="guest hidden">
+  <div class="hero"><div class="eyebrow" id="guestEyebrow">✦ Tavo slaptas kvietimas ✦</div><h1>Kalėdų <em>paslaptis</em></h1><p>Vienas vokelis. Vienas žmogus. Viena maža stebuklinga užduotis.</p></div>
+  <div class="guest-card">
+    <div class="eyebrow" id="greeting">Labas!</div>
+    <h2 id="guestTitle">Tavo burtas jau paruoštas</h2>
+    <p class="guest-sub" id="guestHint">Paspausk „Traukti burtą“ ir stebėk, kas išlįs iš vokelio...</p>
+    <div class="stage" id="stage" aria-hidden="true">
+      <div class="envelope">
+        <div class="env-back"></div>
+        <div class="env-paper"><span>✦</span><span>SLAPTAS BURTAS</span></div>
+        <div class="env-front"></div>
+        <div class="env-flap"></div>
+        <div class="env-seal">✦</div>
+      </div>
+    </div>
+    <button id="reveal" class="primary wide" type="button" style="max-width:300px;margin:auto">✨ Traukti burtą</button>
+    <div class="reveal-card hidden" id="revealCard" aria-live="polite">
+      <div class="over">Tu dovanoji dovanėlę šiam žmogui</div>
+      <div class="recipient-name" id="recipientName"></div>
+      <div class="wish-box"><h3>🎁 Ko žmogus norėtų?</h3><p id="recipientWish"></p></div>
+    </div>
+    <div class="guest-meta hidden" id="guestMeta"></div>
+    <p class="guest-message hidden" id="guestMessage"></p>
+    <div class="guest-controls">
+      <button id="again" class="secondary hidden" type="button">↺ Pažiūrėti animaciją dar kartą</button>
+      <button id="back" class="ghost hidden" type="button">← Grįžti prie dalyvių</button>
+    </div>
+    <p class="info" id="privacyNote">🤫 Pasilik savo burtą paslaptyje.</p>
+  </div>
+</section>
+<section id="bad" class="guest hidden"><div class="guest-card"><h2>Šio burtų vokelio atidaryti nepavyko</h2><p class="guest-sub">Nuoroda neteisinga arba nepilna. Paprašyk organizatoriaus ją atsiųsti iš naujo.</p></div></section>
+<div class="foot">Su ♥ ir Kalėdų nuotaika · Secret Santa</div>
+</main>
+<script>
+(function(){
+'use strict';
+const byId=id=>document.getElementById(id);
+const KEY='secret-santa-test-v2';
+const DEFAULTS=['Vytautas','Arnis','Danguolė','Liuda','Akvilė'].map(name=>({name,wish:''}));
+let people=DEFAULTS.map(p=>({...p}));
+let links=[],createdAt='',gift=null,demo=false,animTimer=null;
+const $=id=>byId(id);
+function stateClass(id,visible){$(id).classList.toggle('hidden',!visible)}
+function alertBox(msg,type='error'){const node=$('formStatus');node.textContent=msg;node.className='status '+type;}
+function clearAlert(){const node=$('formStatus');node.className='status';node.textContent='';}
+function settings(){return{budget:$('budget').value.trim(),date:$('date').value.trim(),message:$('message').value.trim()}}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify({people,settings:settings(),links,createdAt}))}catch{}}
+function restore(){
+ try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(!s)return;
+  if(Array.isArray(s.people)&&s.people.length>=1&&s.people.length<=30){people=s.people.map(p=>({name:String(p.name||'').slice(0,60),wish:String(p.wish||'').slice(0,350)}))}
+  for(const id of ['budget','date','message'])if(s.settings&&typeof s.settings[id]==='string')$(id).value=s.settings[id];
+  if(Array.isArray(s.links)&&s.links.every(p=>typeof p.name==='string'&&typeof p.link==='string')){links=s.links;createdAt=s.createdAt||''}
+ }catch{}
+}
+function make(tag,klass,txt){const e=document.createElement(tag);if(klass)e.className=klass;if(txt!==undefined)e.textContent=txt;return e}
+function renderPeople(){
+ const list=$('peopleList');list.replaceChildren();
+ people.forEach((p,i)=>{
+  const row=make('div','person-editor');
+  const avatar=make('div','person-avatar',String(i+1));
+  const center=make('div','person-fields');
+  const nameLab=make('label','field-label','Dalyvio vardas');nameLab.htmlFor='name-'+i;
+  const name=make('input');name.id='name-'+i;name.maxLength=60;name.value=p.name;name.placeholder='Vardas';
+  name.addEventListener('input',()=>{people[i].name=name.value;persist();});
+  const wishLab=make('label','field-label','Pageidaujamos dovanėlės / užuominos');wishLab.htmlFor='wish-'+i;
+  const wish=make('textarea');wish.id='wish-'+i;wish.maxLength=350;wish.placeholder='Pvz., knyga, mėgstama arbata, stalo žaidimas...';wish.value=p.wish;
+  wish.addEventListener('input',()=>{people[i].wish=wish.value;persist();});
+  center.append(nameLab,name,wishLab,wish);
+  const remove=make('button','icon-button','×');remove.type='button';remove.title='Pašalinti '+(p.name||'dalyvį');remove.setAttribute('aria-label',remove.title);
+  remove.addEventListener('click',()=>{people.splice(i,1);renderPeople();persist();});
+  row.append(avatar,center,remove);list.append(row);
+ });
+}
+function validate(){
+ if(people.length<3||people.length>30)throw Error('Reikia nuo 3 iki 30 dalyvių.');
+ const names=people.map(p=>p.name.trim());
+ if(names.some(n=>!n))throw Error('Kiekvienas dalyvis turi turėti vardą.');
+ if(new Set(names.map(n=>n.toLocaleLowerCase('lt-LT'))).size!==names.length)throw Error('Dalyvių vardai turi būti skirtingi.');
+ if(people.some(p=>p.wish.length>350))throw Error('Vieno dalyvio pageidavimai per ilgi.');
+ return names;
+}
+function randomInt(n){const a=new Uint32Array(1);const limit=Math.floor(4294967296/n)*n;do{crypto.getRandomValues(a)}while(a[0]>=limit);return a[0]%n}
+function shuffleNoSelf(n){let a;do{a=Array.from({length:n},(_,i)=>i);for(let i=n-1;i>0;i--){let j=randomInt(i+1);[a[i],a[j]]=[a[j],a[i]]}}while(a.some((v,i)=>v===i));return a}
+function base64url(bytes){let out='';for(const b of bytes)out+=String.fromCharCode(b);return btoa(out).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
+function unbase64(s){if(!/^[\w-]{50,12000}$/.test(s))throw Error('bad token');const v=atob(s.replace(/-/g,'+').replace(/_/g,'/'));return Uint8Array.from(v,c=>c.charCodeAt(0))}
+async function encrypt(data){
+ const keyData=crypto.getRandomValues(new Uint8Array(32)),iv=crypto.getRandomValues(new Uint8Array(12));
+ const key=await crypto.subtle.importKey('raw',keyData,'AES-GCM',false,['encrypt']);
+ const ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(JSON.stringify(data))));
+ const packet=new Uint8Array(45+ct.length);packet[0]=2;packet.set(keyData,1);packet.set(iv,33);packet.set(ct,45);return base64url(packet)
+}
+async function decrypt(token){
+ const p=unbase64(token);if(p.length<62||p[0]!==2)throw Error('bad packet');
+ const key=await crypto.subtle.importKey('raw',p.slice(1,33),'AES-GCM',false,['decrypt']);
+ const obj=JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:p.slice(33,45)},key,p.slice(45))));
+ if(obj.v!==2||typeof obj.from!=='string'||typeof obj.to!=='string'||typeof obj.wish!=='string'||!obj.to||!obj.from)throw Error('bad gift');
+ return obj;
+}
+async function copy(text){
+ if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);return}
+ const ta=make('textarea');ta.value=text;ta.style.cssText='position:fixed;opacity:0';document.body.append(ta);ta.select();if(!document.execCommand('copy'))throw Error('copy failed');ta.remove();
+}
+function resultText(){return 'SECRET SANTA – ASMENINĖS NUORODOS\n\n'+links.map(item=>item.name+': '+item.link).join('\n\n')+'\n\nKiekvienam dalyviui siųsk tik jo nuorodą. Neišsiųsk viso sąrašo.\n'}
+function renderLinks(){
+ const list=$('linkList');list.replaceChildren();
+ links.forEach((obj,i)=>{
+  const row=make('div','link-row');
+  const left=make('div','person-info');
+  const avatar=make('div','person-avatar',String(i+1));
+  const info=make('div');info.append(make('b','',obj.name),make('span','small','Jo asmeninė nuoroda'));
+  left.append(avatar,info);
+  const actions=make('div','row-actions');
+  const button=make('button','secondary','📋 Kopijuoti');button.type='button';
+  button.addEventListener('click',async()=>{try{await copy(obj.link);button.textContent='✓ Nukopijuota';setTimeout(()=>button.textContent='📋 Kopijuoti',2000)}catch{alertBox('Nepavyko nukopijuoti nuorodos.')}});
+  const a=make('a','button-link ghost','👁 Patikrinti');a.href=obj.link;a.target='_blank';a.rel='noopener noreferrer';
+  actions.append(button,a);row.append(left,actions);list.append(row);
+ });
+ $('drawDate').textContent=createdAt?new Date(createdAt).toLocaleString('lt-LT'):'';
+ stateClass('results',!!links.length);
+}
+function startDemo(){
+ const a=people.find(p=>p.name.trim())||{name:'Vytautas'};
+ const b=people.find(p=>p!==a&&p.name.trim())||{name:'Arnis',wish:''};
+ const data={from:a.name.trim(),to:b.name.trim(),wish:b.wish.trim()||'PAVYZDYS: mėgstama knyga, kvapni arbata arba smagi stalo žaidimo staigmena.',...settings()};
+ showGift(data,true);
+}
+function showGift(data,isDemo){
+ gift=data;demo=isDemo;
+ stateClass('organizer',false);stateClass('guest',true);stateClass('bad',false);
+ $('greeting').textContent='Labas, '+data.from+'! ✦';
+ $('guestEyebrow').textContent=isDemo?'✦ Demonstracija – burtai neskirstomi ✦':'✦ Tavo asmeninis Kalėdų burtas ✦';
+ $('privacyNote').textContent=isDemo?'BANDOMASIS REŽIMAS – šis burtas niekam neišsiųstas.':'🤫 Šio vardo niekam neišduok.';
+ stateClass('back',isDemo);
+ $('recipientName').textContent=data.to;
+ $('recipientWish').textContent=data.wish.trim()||'Pageidavimų nenurodyta. Gali sugalvoti staigmeną pats! 🎀';
+ const meta=$('guestMeta');meta.replaceChildren();
+ for(const [icon,key] of [['🎀 ','budget'],['📅 ','date']])if(typeof data[key]==='string'&&data[key])meta.append(make('span','pill',icon+data[key]));
+ $('guestMessage').textContent=data.message||'';
+ resetAnimation();window.scrollTo({top:0,behavior:'instant'});
+}
+function resetAnimation(){
+ if(animTimer)clearTimeout(animTimer);
+ $('stage').classList.remove('opening','opened');
+ stateClass('revealCard',false);$('revealCard').classList.remove('show');
+ stateClass('guestMeta',false);stateClass('guestMessage',false);stateClass('again',false);stateClass('reveal',true);
+ $('reveal').disabled=false;$('reveal').textContent='✨ Traukti burtą';
+ $('guestTitle').textContent='Tavo burtas jau paruoštas';
+ $('guestHint').textContent='Paspausk „Traukti burtą“ ir stebėk, kas išlįs iš vokelio...';
+}
+function openAnimation(){
+ $('reveal').disabled=true;$('reveal').textContent='✦ Burtai maišomi...';
+ $('guestHint').textContent='Kalėdų magija atveria vokelį...';
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const d=reduced?40:2100;
+ $('stage').classList.add('opening');
+ animTimer=setTimeout(()=>{
+  $('stage').classList.remove('opening');$('stage').classList.add('opened');
+  $('guestTitle').textContent='Tavo slaptasis žmogus!';
+  $('guestHint').textContent='Štai kam šiemet ruošiesi dovanėlę.';
+  stateClass('revealCard',true);$('revealCard').classList.add('show');
+  stateClass('guestMeta',true);stateClass('guestMessage',!!gift.message);stateClass('reveal',false);stateClass('again',true);
+  animTimer=null;
+ },d);
+}
+function setup(){
+ restore();renderPeople();renderLinks();
+ for(const id of ['budget','date','message'])$(id).addEventListener('input',persist);
+ $('addPerson').addEventListener('click',()=>{if(people.length>=30){alertBox('Daugiausia 30 dalyvių.');return}people.push({name:'',wish:''});renderPeople();persist();$('peopleList').lastElementChild.querySelector('input').focus()});
+ $('preview').addEventListener('click',startDemo);$('asidePreview').addEventListener('click',startDemo);
+ $('back').addEventListener('click',()=>{resetAnimation();stateClass('guest',false);stateClass('organizer',true);window.scrollTo({top:0,behavior:'instant'})});
+ $('reveal').addEventListener('click',openAnimation);$('again').addEventListener('click',resetAnimation);
+ $('draw').addEventListener('click',async()=>{
+  clearAlert();let names;try{names=validate()}catch(e){alertBox(e.message);return}
+  if(!crypto?.subtle||!window.isSecureContext){alertBox('Nuorodoms generuoti reikia HTTPS puslapio.');return}
+  if(links.length&&!confirm('Tai sugeneruos naujus burtus. Senos nuorodos ir toliau veiks. Ar tikrai generuoti iš naujo?'))return;
+  const button=$('draw');button.disabled=true;button.textContent='Kuriami slapti vokeliai...';
+  try{
+   const mapping=shuffleNoSelf(names.length);
+   const base=location.origin+location.pathname;
+   const opts=settings();
+   const generated=await Promise.all(names.map(async(name,i)=>{
+    const to=mapping[i];const packet={v:2,from:name,to:names[to],wish:people[to].wish.trim(),...opts};
+    return{name,link:base+'#dovana='+await encrypt(packet)}
+   }));
+   links=generated;createdAt=new Date().toISOString();persist();renderLinks();
+   alertBox('Burtai paruošti. Pirmiausia spausk „Patikrinti“, o tada siųsk kiekvienam dalyviui jo nuorodą.','success');
+   $('results').scrollIntoView({behavior:'smooth',block:'start'});
+  }catch(e){alertBox('Generuojant įvyko klaida. Patikrink naršyklę.');console.error(e)}
+  finally{button.disabled=false;button.textContent='🎁 Sugeneruoti nuorodas'}
+ });
+ $('copyAll').addEventListener('click',async()=>{try{await copy(resultText());$('copyAll').textContent='✓ Nukopijuota';setTimeout(()=>$('copyAll').textContent='📋 Kopijuoti sąrašą',2300)}catch{alertBox('Nepavyko nukopijuoti.')}});
+ $('download').addEventListener('click',()=>{const blob=new Blob([resultText()],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=make('a');a.href=url;a.download='secret-santa-burtu-nuorodos.txt';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)});
+}
+const token=location.hash.match(/^#dovana=([A-Za-z0-9_-]+)$/);
+if(location.hash.startsWith('#dovana=')){
+ if(!token){stateClass('bad',true)}
+ else decrypt(token[1]).then(data=>{showGift(data,false);$('back').remove()}).catch(()=>stateClass('bad',true));
+}else{stateClass('organizer',true);setup()}
+})();
+</script>
+</body>
+</html>
