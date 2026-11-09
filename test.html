@@ -105,12 +105,12 @@ button:disabled{opacity:.6;cursor:wait;transform:none}
 .env-flap{height:164px}
 .env-seal{top:73px;left:calc(50% - 29px);width:58px;height:58px;font-size:26px}
 .stage::before,.stage::after{font-size:32px}
-.reveal-paper{bottom:var(--envelope-h);width:min(96%,546px);padding:29px 31px 26px;transform:translateX(-50%) translateY(190px);opacity:0;transition:transform 1.25s cubic-bezier(.19,.84,.25,1),opacity .3s linear;transition-delay:0s;}
+.reveal-paper{bottom:calc(var(--envelope-h) + 20px);width:min(96%,546px);padding:29px 31px 26px;transform:translateX(-50%) translateY(190px);opacity:0;transition:transform 1.25s cubic-bezier(.19,.84,.25,1),opacity .3s linear;transition-delay:0s;}
 .reveal-paper .over{font-size:14px}
 .recipient-name{font-size:clamp(45px,7vw,75px)}
 .reveal-paper .wish-title{font-size:17px}
 .reveal-paper .wish-text{font-size:19px}
-.reveal-paper .letter-note{font-size:15px}
+.reveal-paper .letter-note{font-size:15px;font-weight:700;color:#9b4348;line-height:1.45}
 .letter-scene.opening .reveal-paper,.letter-scene.opened .reveal-paper{transform:translateX(-50%) translateY(0);opacity:1;transition-delay:.7s}
 .letter-scene.opened .reveal-paper{transition-delay:0s}
 @media(max-width:560px){
@@ -119,7 +119,7 @@ button:disabled{opacity:.6;cursor:wait;transform:none}
  .envelope{width:var(--envelope-w);height:var(--envelope-h)}
  .env-flap{height:148px}
  .env-seal{top:66px;left:calc(50% - 26px);width:52px;height:52px;font-size:23px}
- .reveal-paper{bottom:var(--envelope-h);width:min(98%,420px);padding:23px 18px 20px;transform:translateX(-50%) translateY(170px)}
+ .reveal-paper{bottom:calc(var(--envelope-h) + 18px);width:min(98%,420px);padding:23px 18px 20px;transform:translateX(-50%) translateY(170px)}
  .reveal-paper .over{font-size:12px}
  .recipient-name{font-size:clamp(40px,10vw,56px)}
  .reveal-paper .wish-title{font-size:15px}
@@ -205,7 +205,7 @@ button:disabled{opacity:.6;cursor:wait;transform:none}
           <div class="recipient-name" id="recipientName"></div>
           <div class="wish-title">🎁 Ko žmogus norėtų?</div>
           <div class="wish-text" id="recipientWish"></div>
-          <div class="letter-note">Išduok tik dovaną, ne burtą 😉</div>
+          <div class="letter-note">✨ Kviečiame į Kūčių vakarienę Dercekliuose!</div>
         </div>
         <div class="stage">
           <div class="envelope">
